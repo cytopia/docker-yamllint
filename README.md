@@ -12,6 +12,7 @@
 
 
 Dockerized version of [yamllint](https://github.com/adrienverge/yamllint)<sup>[1]</sup>.
+The image is built nightly against the latest stable version of `yamllint` and pushed to Dockerhub.
 
 <sup>[1] Official project: https://github.com/adrienverge/yamllint</sup>
 
