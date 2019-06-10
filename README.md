@@ -9,6 +9,7 @@
 
 > #### All awesome CI images
 >
+> [ansible](https://github.com/cytopia/docker-ansible) |
 > [ansible-lint](https://github.com/cytopia/docker-ansible-lint) |
 > [awesome-ci](https://github.com/cytopia/awesome-ci) |
 > [jsonlint](https://github.com/cytopia/docker-jsonlint) |
@@ -16,10 +17,12 @@
 > [yamllint](https://github.com/cytopia/docker-yamllint)
 
 
+View **[Dockerfile](https://github.com/cytopia/docker-yamllint/blob/master/Dockerfile)** on GitHub.
+
 [![Docker hub](http://dockeri.co/image/cytopia/yamllint)](https://hub.docker.com/r/cytopia/yamllint)
 
 
-Dockerized version of [yamllint](https://github.com/adrienverge/yamllint)<sup>[1]</sup>.
+Tiny Alpine-based dockerized version of [yamllint](https://github.com/adrienverge/yamllint)<sup>[1]</sup>.
 The image is built nightly against the latest stable version of `yamllint` and pushed to Dockerhub.
 
 <sup>[1] Official project: https://github.com/adrienverge/yamllint</sup>
