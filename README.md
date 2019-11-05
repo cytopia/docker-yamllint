@@ -52,26 +52,26 @@ The image is built nightly against the latest stable version of `yamllint` and p
 
 | Docker tag | Build from |
 |------------|------------|
-| `latest`   | Latest stable yamllint version |
-| `1.18`     | yamllint version `v1.18`       |
-| `1.17`     | yamllint version `v1.17`       |
-| `1.16`     | yamllint version `v1.16`       |
-| `1.15`     | yamllint version `v1.15`       |
-| `1.14`     | yamllint version `v1.14`       |
-| `1.13`     | yamllint version `v1.13`       |
-| `1.12`     | yamllint version `v1.12`       |
-| `1.11`     | yamllint version `v1.11`       |
-| `1.10`     | yamllint version `v1.10`       |
-| `1.9`      | yamllint version `v1.9`        |
-| `1.8`      | yamllint version `v1.8`        |
-| `1.7`      | yamllint version `v1.7`        |
-| `1.6`      | yamllint version `v1.6`        |
-| `1.5`      | yamllint version `v1.5`        |
-| `1.4`      | yamllint version `v1.4`        |
-| `1.3`      | yamllint version `v1.3`        |
-| `1.2`      | yamllint version `v1.2`        |
-| `1.1`      | yamllint version `v1.1`        |
-| `1.0`      | yamllint version `v1.0`        |
+| `latest`   | Latest stable yamllint version    |
+| `1.18`     | Latest `v1.18.x` yamllint version |
+| `1.17`     | Latest `v1.17.x` yamllint version |
+| `1.16`     | Latest `v1.16.x` yamllint version |
+| `1.15`     | Latest `v1.15.x` yamllint version |
+| `1.14`     | Latest `v1.14.x` yamllint version |
+| `1.13`     | Latest `v1.13.x` yamllint version |
+| `1.12`     | Latest `v1.12.x` yamllint version |
+| `1.11`     | Latest `v1.11.x` yamllint version |
+| `1.10`     | Latest `v1.10.x` yamllint version |
+| `1.9`      | Latest `v1.9.x` yamllint version  |
+| `1.8`      | Latest `v1.8.x` yamllint version  |
+| `1.7`      | Latest `v1.7.x` yamllint version  |
+| `1.6`      | Latest `v1.6.x` yamllint version  |
+| `1.5`      | Latest `v1.5.x` yamllint version  |
+| `1.4`      | Latest `v1.4.x` yamllint version  |
+| `1.3`      | Latest `v1.3.x` yamllint version  |
+| `1.2`      | Latest `v1.2.x` yamllint version  |
+| `1.1`      | Latest `v1.1.x` yamllint version  |
+| `1.0`      | Latest `v1.0.x` yamllint version  |
 
 
 ## Docker mounts
