@@ -26,6 +26,7 @@
 > [phplint][plint-git-lnk] **•**
 > [php-cs-fixer][pcsf-git-lnk] **•**
 > [pycodestyle][pycs-git-lnk] **•**
+> [pydocstyle][pyds-git-lnk] **•**
 > [pylint][pylint-git-lnk] **•**
 > [terraform-docs][tfdocs-git-lnk] **•**
 > [terragrunt][tg-git-lnk] **•**
@@ -51,7 +52,26 @@ The image is built nightly against the latest stable version of `yamllint` and p
 
 | Docker tag | Build from |
 |------------|------------|
-| `latest`   | Current stable yamllint version |
+| `latest`   | Latest stable yamllint version    |
+| `1.18`     | Latest `v1.18.x` yamllint version |
+| `1.17`     | Latest `v1.17.x` yamllint version |
+| `1.16`     | Latest `v1.16.x` yamllint version |
+| `1.15`     | Latest `v1.15.x` yamllint version |
+| `1.14`     | Latest `v1.14.x` yamllint version |
+| `1.13`     | Latest `v1.13.x` yamllint version |
+| `1.12`     | Latest `v1.12.x` yamllint version |
+| `1.11`     | Latest `v1.11.x` yamllint version |
+| `1.10`     | Latest `v1.10.x` yamllint version |
+| `1.9`      | Latest `v1.9.x` yamllint version  |
+| `1.8`      | Latest `v1.8.x` yamllint version  |
+| `1.7`      | Latest `v1.7.x` yamllint version  |
+| `1.6`      | Latest `v1.6.x` yamllint version  |
+| `1.5`      | Latest `v1.5.x` yamllint version  |
+| `1.4`      | Latest `v1.4.x` yamllint version  |
+| `1.3`      | Latest `v1.3.x` yamllint version  |
+| `1.2`      | Latest `v1.2.x` yamllint version  |
+| `1.1`      | Latest `v1.1.x` yamllint version  |
+| `1.0`      | Latest `v1.0.x` yamllint version  |
 
 
 ## Docker mounts
@@ -92,6 +112,7 @@ linter below for reproducible local or remote CI tests:
 | [php-cs-fixer][pcsf-git-lnk]     | [![pcsf-hub-img]][pcsf-hub-lnk]       | PHP        | PHP Coding Standards Fixer |
 | [black][black-git-lnk]           | [![black-hub-img]][black-hub-lnk]     | Python     | The uncompromising Python code formatter |
 | [pycodestyle][pycs-git-lnk]      | [![pycs-hub-img]][pycs-hub-lnk]       | Python     | Python style guide checker |
+| [pydocstyle][pyds-git-lnk]       | [![pyds-hub-img]][pyds-hub-lnk]       | Python     | Python docstyle checker |
 | [pylint][pylint-git-lnk]         | [![pylint-hub-img]][pylint-hub-lnk]   | Python     | Python source code, bug and quality checker |
 | [terraform-docs][tfdocs-git-lnk] | [![tfdocs-hub-img]][tfdocs-hub-lnk]   | Terraform  | Terraform doc generator (TF 0.12 ready) **<sup>[1]</sup>** |
 | [terragrunt][tg-git-lnk]         | [![tg-hub-img]][tg-hub-lnk]           | Terraform  | Terragrunt and Terraform |
@@ -164,6 +185,10 @@ linter below for reproducible local or remote CI tests:
 [pycs-git-lnk]: https://github.com/cytopia/docker-pycodestyle
 [pycs-hub-img]: https://img.shields.io/docker/pulls/cytopia/pycodestyle.svg
 [pycs-hub-lnk]: https://hub.docker.com/r/cytopia/pycodestyle
+
+[pyds-git-lnk]: https://github.com/cytopia/docker-pydocstyle
+[pyds-hub-img]: https://img.shields.io/docker/pulls/cytopia/pydocstyle.svg
+[pyds-hub-lnk]: https://hub.docker.com/r/cytopia/pydocstyle
 
 [pylint-git-lnk]: https://github.com/cytopia/docker-pylint
 [pylint-hub-img]: https://img.shields.io/docker/pulls/cytopia/pylint.svg
