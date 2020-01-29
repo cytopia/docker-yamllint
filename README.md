@@ -53,6 +53,8 @@ The image is built nightly against the latest stable version of `yamllint` and p
 | Docker tag | Build from |
 |------------|------------|
 | `latest`   | Latest stable yamllint version    |
+| `1.20`     | Latest `v1.20.x` yamllint version |
+| `1.19`     | Latest `v1.19.x` yamllint version |
 | `1.18`     | Latest `v1.18.x` yamllint version |
 | `1.17`     | Latest `v1.17.x` yamllint version |
 | `1.16`     | Latest `v1.16.x` yamllint version |
