@@ -53,6 +53,8 @@ The image is built nightly against the latest stable version of `yamllint` and p
 | Docker tag | Build from |
 |------------|------------|
 | `latest`   | Latest stable yamllint version    |
+| `1.20`     | Latest `v1.20.x` yamllint version |
+| `1.19`     | Latest `v1.19.x` yamllint version |
 | `1.18`     | Latest `v1.18.x` yamllint version |
 | `1.17`     | Latest `v1.17.x` yamllint version |
 | `1.16`     | Latest `v1.16.x` yamllint version |
@@ -82,8 +84,29 @@ the root of your project where your `.yamllint` file is located.
 
 ## Usage
 
+### Command line
+
 ```bash
-docker run --rm -v $(pwd):/data cytopia/yamllint .
+docker run --rm -it -v $(pwd):/data cytopia/yamllint .
+```
+### Makefile
+```make
+ifneq (,)
+.error This Makefile requires GNU Make.
+endif
+
+lint: lint-yaml
+
+lint-yaml:
+	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(PWD):/data cytopia/yamllint:latest .
+```
+### GitLab CI
+```yaml
+lint_yaml:
+  stage: lint
+  image: cytopia/yamllint
+  script:
+    - .
 ```
 
 
