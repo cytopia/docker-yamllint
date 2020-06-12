@@ -21,6 +21,8 @@
 > [goimports][gimp-git-lnk] **•**
 > [golint][glint-git-lnk] **•**
 > [jsonlint][jlint-git-lnk] **•**
+> [linkcheck][linkcheck-git-lnk] **•**
+> [mypy][mypy-git-lnk] **•**
 > [phpcbf][pcbf-git-lnk] **•**
 > [phpcs][pcs-git-lnk] **•**
 > [phplint][plint-git-lnk] **•**
@@ -53,6 +55,9 @@ The image is built nightly against the latest stable version of `yamllint` and p
 | Docker tag | Build from |
 |------------|------------|
 | `latest`   | Latest stable yamllint version    |
+| `1.23`     | Latest `v1.23.x` yamllint version |
+| `1.22`     | Latest `v1.22.x` yamllint version |
+| `1.21`     | Latest `v1.21.x` yamllint version |
 | `1.20`     | Latest `v1.20.x` yamllint version |
 | `1.19`     | Latest `v1.19.x` yamllint version |
 | `1.18`     | Latest `v1.18.x` yamllint version |
@@ -85,10 +90,10 @@ the root of your project where your `.yamllint` file is located.
 ## Usage
 
 ### Command line
-
 ```bash
 docker run --rm -it -v $(pwd):/data cytopia/yamllint .
 ```
+
 ### Makefile
 ```make
 ifneq (,)
@@ -100,13 +105,19 @@ lint: lint-yaml
 lint-yaml:
 	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(PWD):/data cytopia/yamllint:latest .
 ```
+
 ### GitLab CI
 ```yaml
-lint_yaml:
+stages:
+ - lint
+
+lint-yaml:
   stage: lint
-  image: cytopia/yamllint
+  image:
+    name: cytopia/yamllint
+    entrypoint: ["/bin/ash", "-c"]
   script:
-    - .
+    - yamllint -f colored .
 ```
 
 
@@ -121,6 +132,7 @@ linter below for reproducible local or remote CI tests:
 |--------|-----------|------|-------------|
 | [awesome-ci][aci-git-lnk]        | [![aci-hub-img]][aci-hub-lnk]         | Basic      | Tools for git, file and static source code analysis |
 | [file-lint][flint-git-lnk]       | [![flint-hub-img]][flint-hub-lnk]     | Basic      | Baisc source code analysis |
+| [linkcheck][linkcheck-git-lnk]   | [![linkcheck-hub-img]][flint-hub-lnk] | Basic      | Search for URLs in files and validate their HTTP status code |
 | [ansible][ansible-git-lnk]       | [![ansible-hub-img]][ansible-hub-lnk] | Ansible    | Multiple versions and flavours of Ansible |
 | [ansible-lint][alint-git-lnk]    | [![alint-hub-img]][alint-hub-lnk]     | Ansible    | Lint Ansible |
 | [gofmt][gfmt-git-lnk]            | [![gfmt-hub-img]][gfmt-hub-lnk]       | Go         | Format Go source code **<sup>[1]</sup>** |
@@ -134,6 +146,7 @@ linter below for reproducible local or remote CI tests:
 | [phplint][plint-git-lnk]         | [![plint-hub-img]][plint-hub-lnk]     | PHP        | PHP Code Linter **<sup>[1]</sup>** |
 | [php-cs-fixer][pcsf-git-lnk]     | [![pcsf-hub-img]][pcsf-hub-lnk]       | PHP        | PHP Coding Standards Fixer |
 | [black][black-git-lnk]           | [![black-hub-img]][black-hub-lnk]     | Python     | The uncompromising Python code formatter |
+| [mypy][mypy-git-lnk]             | [![mypy-hub-img]][mypy-hub-lnk]       | Python     | Static source code analysis |
 | [pycodestyle][pycs-git-lnk]      | [![pycs-hub-img]][pycs-hub-lnk]       | Python     | Python style guide checker |
 | [pydocstyle][pyds-git-lnk]       | [![pyds-hub-img]][pyds-hub-lnk]       | Python     | Python docstyle checker |
 | [pylint][pylint-git-lnk]         | [![pylint-hub-img]][pylint-hub-lnk]   | Python     | Python source code, bug and quality checker |
@@ -152,6 +165,10 @@ linter below for reproducible local or remote CI tests:
 [flint-git-lnk]: https://github.com/cytopia/docker-file-lint
 [flint-hub-img]: https://img.shields.io/docker/pulls/cytopia/file-lint.svg
 [flint-hub-lnk]: https://hub.docker.com/r/cytopia/file-lint
+
+[linkcheck-git-lnk]: https://github.com/cytopia/docker-linkcheck
+[linkcheck-hub-img]: https://img.shields.io/docker/pulls/cytopia/linkcheck.svg
+[linkcheck-hub-lnk]: https://hub.docker.com/r/cytopia/linkcheck
 
 [jlint-git-lnk]: https://github.com/cytopia/docker-jsonlint
 [jlint-hub-img]: https://img.shields.io/docker/pulls/cytopia/jsonlint.svg
@@ -204,6 +221,10 @@ linter below for reproducible local or remote CI tests:
 [black-git-lnk]: https://github.com/cytopia/docker-black
 [black-hub-img]: https://img.shields.io/docker/pulls/cytopia/black.svg
 [black-hub-lnk]: https://hub.docker.com/r/cytopia/black
+
+[mypy-git-lnk]: https://github.com/cytopia/docker-mypy
+[mypy-hub-img]: https://img.shields.io/docker/pulls/cytopia/mypy.svg
+[mypy-hub-lnk]: https://hub.docker.com/r/cytopia/mypy
 
 [pycs-git-lnk]: https://github.com/cytopia/docker-pycodestyle
 [pycs-hub-img]: https://img.shields.io/docker/pulls/cytopia/pycodestyle.svg
