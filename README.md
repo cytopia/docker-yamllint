@@ -55,6 +55,8 @@ The image is built nightly against the latest stable version of `yamllint` and p
 | Docker tag | Build from |
 |------------|------------|
 | `latest`   | Latest stable yamllint version    |
+| `1.25`     | Latest `v1.25.x` yamllint version |
+| `1.24`     | Latest `v1.24.x` yamllint version |
 | `1.23`     | Latest `v1.23.x` yamllint version |
 | `1.22`     | Latest `v1.22.x` yamllint version |
 | `1.21`     | Latest `v1.21.x` yamllint version |
