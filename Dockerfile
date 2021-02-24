@@ -1,9 +1,12 @@
-FROM alpine:3.11 as builder
+FROM alpine:3.13.2 as base
+
+FROM base as builder
 
 RUN set -eux \
 	&& apk add --no-cache \
 		bc \
-		python3
+		python3 \
+                cmd:pip3
 
 ARG VERSION
 RUN set -eux \
@@ -19,7 +22,7 @@ RUN set -eux \
 	&& find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
 
 
-FROM alpine:3.11 as production
+FROM base as production
 ARG VERSION
 # https://github.com/opencontainers/image-spec/blob/master/annotations.md
 #LABEL "org.opencontainers.image.created"=""
