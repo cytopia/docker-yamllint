@@ -60,7 +60,7 @@ build:
 			$(NO_CACHE) \
 			--label "org.opencontainers.image.created"="$$(date --rfc-3339=s)" \
 			--label "org.opencontainers.image.revision"="$$(git rev-parse HEAD)" \
-			--label "org.opencontainers.image.version"="${TAG}" \
+			--label "org.opencontainers.image.version"="$(TAG)" \
 			--build-arg VERSION=$${VERSION} \
 			-t $(IMAGE) -f $(DIR)/$(FILE)$${SUFFIX} $(DIR); \
 	else \
@@ -68,7 +68,7 @@ build:
 			$(NO_CACHE) \
 			--label "org.opencontainers.image.created"="$$(date --rfc-3339=s)" \
 			--label "org.opencontainers.image.revision"="$$(git rev-parse HEAD)" \
-			--label "org.opencontainers.image.version"="${TAG}" \
+			--label "org.opencontainers.image.version"="$(TAG)" \
 			--build-arg VERSION=$(TAG) \
 			-t $(IMAGE) -f $(DIR)/$(FILE) $(DIR); \
 	fi

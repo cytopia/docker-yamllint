@@ -123,7 +123,7 @@ jobs:
             done;
             return 1;
           }
-          retry make build VERSION=${VERSION}
+          retry make build TAG=${VERSION}
         env:
           VERSION: ${{ matrix.version }}
           RETRIES: 20
@@ -142,7 +142,7 @@ jobs:
             done;
             return 1;
           }
-          retry make test VERSION=${VERSION}
+          retry make test TAG=${VERSION}
         env:
           VERSION: ${{ matrix.version }}
           RETRIES: 20
