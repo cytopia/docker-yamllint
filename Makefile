@@ -129,8 +129,8 @@ _test-version:
 			exit 1; \
 		fi; \
 	else \
-		echo "Testing for tag: $(TAG)"; \
-		if ! docker run --platform $(ARCH) --rm $(IMAGE):$(DOCKER_TAG) --version | grep -E "v?$(TAG)[.0-9]+$$"; then \
+		echo "Testing for tag: $(VERSION)"; \
+		if ! docker run --platform $(ARCH) --rm $(IMAGE):$(DOCKER_TAG) --version | grep -E "v?$(VERSION)[.0-9]+$$"; then \
 			docker run --platform $(ARCH) --rm $(IMAGE):$(DOCKER_TAG) --version; \
 			echo "Failed"; \
 			exit 1; \
