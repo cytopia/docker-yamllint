@@ -1,15 +1,13 @@
 # Docker image for `yamllint`
 
 [![Tag](https://img.shields.io/github/tag/cytopia/docker-yamllint.svg)](https://github.com/cytopia/docker-yamllint/releases)
-[![](https://images.microbadger.com/badges/version/cytopia/yamllint:latest.svg?&kill_cache=1)](https://microbadger.com/images/cytopia/yamllint:latest "yamllint")
-[![](https://images.microbadger.com/badges/image/cytopia/yamllint:latest.svg?&kill_cache=1)](https://microbadger.com/images/cytopia/yamllint:latest "yamllint")
-[![](https://img.shields.io/docker/pulls/cytopia/yamllint.svg)](https://hub.docker.com/r/cytopia/yamllint)
 [![](https://img.shields.io/badge/github-cytopia%2Fdocker--yamllint-red.svg)](https://github.com/cytopia/docker-yamllint "github.com/cytopia/docker-yamllint")
 [![License](https://img.shields.io/badge/license-MIT-%233DA639.svg)](https://opensource.org/licenses/MIT)
 
 [![lint](https://github.com/cytopia/docker-yamllint/workflows/lint/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Alint)
 [![build](https://github.com/cytopia/docker-yamllint/workflows/build/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Abuild)
 [![nightly](https://github.com/cytopia/docker-yamllint/workflows/nightly/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Anightly)
+
 
 > #### All [#awesome-ci](https://github.com/topics/awesome-ci) Docker images
 >
@@ -41,13 +39,10 @@
 > [yamlfmt][yfmt-git-lnk] **•**
 > [yamllint][ylint-git-lnk]
 
-> #### All [#awesome-ci](https://github.com/topics/awesome-ci) Makefiles
->
-> Visit **[cytopia/makefiles](https://github.com/cytopia/makefiles)** for seamless project integration, minimum required best-practice code linting and CI.
+View **[Dockerfiles](https://github.com/cytopia/docker-yamllint/blob/master/Dockerfiles/)** on GitHub.
 
-View **[Dockerfile](https://github.com/cytopia/docker-yamllint/blob/master/Dockerfile)** on GitHub.
 
-[![Docker hub](http://dockeri.co/image/cytopia/yamllint?&kill_cache=1)](https://hub.docker.com/r/cytopia/yamllint)
+**Available Architectures:**  `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`
 
 Tiny Alpine-based dockerized version of [yamllint](https://github.com/adrienverge/yamllint)<sup>[1]</sup>.
 The image is built nightly against the latest stable version of `yamllint` and pushed to Dockerhub.
@@ -55,47 +50,49 @@ The image is built nightly against the latest stable version of `yamllint` and p
 <sup>[1] Official project: https://github.com/adrienverge/yamllint</sup>
 
 
-## Available Docker image versions
+## :whale: Available Docker image versions
 
-| Docker tag | Build from |
-|------------|------------|
-| `latest`   | Latest stable yamllint version    |
-| `1.26`     | Latest `v1.26.x` yamllint version |
-| `1.25`     | Latest `v1.25.x` yamllint version |
-| `1.24`     | Latest `v1.24.x` yamllint version |
-| `1.23`     | Latest `v1.23.x` yamllint version |
-| `1.22`     | Latest `v1.22.x` yamllint version |
-| `1.21`     | Latest `v1.21.x` yamllint version |
-| `1.20`     | Latest `v1.20.x` yamllint version |
-| `1.19`     | Latest `v1.19.x` yamllint version |
-| `1.18`     | Latest `v1.18.x` yamllint version |
-| `1.17`     | Latest `v1.17.x` yamllint version |
-| `1.16`     | Latest `v1.16.x` yamllint version |
-| `1.15`     | Latest `v1.15.x` yamllint version |
-| `1.14`     | Latest `v1.14.x` yamllint version |
-| `1.13`     | Latest `v1.13.x` yamllint version |
-| `1.12`     | Latest `v1.12.x` yamllint version |
-| `1.11`     | Latest `v1.11.x` yamllint version |
-| `1.10`     | Latest `v1.10.x` yamllint version |
-| `1.9`      | Latest `v1.9.x` yamllint version  |
-| `1.8`      | Latest `v1.8.x` yamllint version  |
-| `1.7`      | Latest `v1.7.x` yamllint version  |
-| `1.6`      | Latest `v1.6.x` yamllint version  |
-| `1.5`      | Latest `v1.5.x` yamllint version  |
-| `1.4`      | Latest `v1.4.x` yamllint version  |
-| `1.3`      | Latest `v1.3.x` yamllint version  |
-| `1.2`      | Latest `v1.2.x` yamllint version  |
-| `1.1`      | Latest `v1.1.x` yamllint version  |
-| `1.0`      | Latest `v1.0.x` yamllint version  |
+[![](https://img.shields.io/docker/pulls/cytopia/yamllint.svg)](https://hub.docker.com/r/cytopia/yamllint)
+[![Docker](https://badgen.net/badge/icon/:latest?icon=docker&label=cytopia/yamllint)](https://hub.docker.com/r/cytopia/yamllint)
+
+#### Rolling releaess
+
+The following Docker image tags are rolling releases and are built and updated every night.
+
+[![nightly](https://github.com/cytopia/docker-yamllint/workflows/nightly/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Anightly)
 
 
-## Docker mounts
+| Docker Tag           | Git Ref   | Yamllint     | Flavour | Available Architectures                      |
+|----------------------|-----------|--------------|---------|----------------------------------------------|
+| `latest`             | master    | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+| `alpine`             | master    | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+|                      |           |              |         |                                              |
+| `1`                  | master    | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+| `alpine-1`           | master    | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+
+#### Point in time releases
+
+The following Docker image tags are built once and can be used for reproducible builds. Its version never changes so you will have to update tags in your pipelines from time to time in order to stay up-to-date.
+
+[![build](https://github.com/cytopia/docker-yamllint/workflows/build/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Abuild)
+
+
+| Docker Tag           | Git Ref   | Yamllint     | Flavour | Available Architectures                      |
+|----------------------|-----------|--------------|---------|----------------------------------------------|
+| `latest-0.10`        | tag: 0.10 | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+| `alpine-latest-0.10` | tag: 0.10 | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+|                      |           |              |         |                                              |
+| `1-0.10`             | tag: 0.10 | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+| `alpine-1-0.10`      | tag: 0.10 | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+
+
+## :open_file_folder: Docker mounts
 
 The working directory inside the Docker container is **`/data/`** and should be mounted locally to
 the root of your project where your `.yamllint` file is located.
 
 
-## Usage
+## :computer: Usage
 
 ### Command line
 ```bash
@@ -129,7 +126,7 @@ lint-yaml:
 ```
 
 
-## Related [#awesome-ci](https://github.com/topics/awesome-ci) projects
+## :arrows_counterclockwise: Related [#awesome-ci](https://github.com/topics/awesome-ci) projects
 
 ### Docker images
 
@@ -283,7 +280,8 @@ Visit **[cytopia/makefiles](https://github.com/cytopia/makefiles)** for dependen
 The provided Makefiles will only require GNU Make and Docker itself removing the need to install anything else.
 
 
-## License
+## :page_facing_up: License
+
 
 **[MIT License](LICENSE)**
 
