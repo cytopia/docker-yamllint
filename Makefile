@@ -50,7 +50,6 @@ else
 		DOCKER_TAG = $(FLAVOUR)-$(VERSION)-$(TAG)
 	endif
 endif
-ARCH       = linux/amd64
 
 # Makefile.lint overwrites
 FL_IGNORES  = .git/,.github/,tests/,Dockerfiles/data/
