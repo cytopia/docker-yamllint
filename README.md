@@ -1,7 +1,7 @@
 # Docker image for `yamllint`
 
 [![Tag](https://img.shields.io/github/tag/cytopia/docker-yamllint.svg)](https://github.com/cytopia/docker-yamllint/releases)
-[![](https://images.microbadger.com/badges/version/cytopia/yamllint:latest.svg?&kill_cache=1)](https://microbadger.com/images/cytopia/yamllint:latest "yamllint")
+[![](https://img.shields.io/badge/github-cytopia%2Fdocker--yamllint-red.svg)](https://github.com/cytopia/docker-yamllint "github.com/cytopia/docker-yamllint")
 [![License](https://img.shields.io/badge/license-MIT-%233DA639.svg)](https://opensource.org/licenses/MIT)
 
 [![lint](https://github.com/cytopia/docker-yamllint/workflows/lint/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Alint)
@@ -77,7 +77,7 @@ The following Docker image tags are built once and can be used for reproducible 
 [![build](https://github.com/cytopia/docker-yamllint/workflows/build/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Abuild)
 
 
-| Docker Tag           | Git Ref   | Ymllint     | Flavour | Available Architectures                      |
+| Docker Tag           | Git Ref   | Yamllint     | Flavour | Available Architectures                      |
 |----------------------|-----------|--------------|---------|----------------------------------------------|
 | `latest-0.10`        | tag: 0.10 | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
 | `alpine-latest-0.10` | tag: 0.10 | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
