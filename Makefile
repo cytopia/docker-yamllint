@@ -113,7 +113,7 @@ _test-version:
 	@echo "------------------------------------------------------------"
 	@echo "- Testing correct version"
 	@echo "------------------------------------------------------------"
-	@if [ "$(TAG)" = "latest" ]; then \
+	@if [ "$(VERSION)" = "latest" ]; then \
 		echo "Fetching latest version from GitHub"; \
 		LATEST="$$( \
 			curl -L -sS  https://github.com/adrienverge/yamllint/releases/latest/ \
