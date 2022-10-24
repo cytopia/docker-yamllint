@@ -2,91 +2,113 @@ ifneq (,)
 .error This Makefile requires GNU Make.
 endif
 
+# Ensure additional Makefiles are present
+MAKEFILES = Makefile.docker Makefile.lint
+$(MAKEFILES): URL=https://raw.githubusercontent.com/devilbox/makefiles/master/$(@)
+$(MAKEFILES):
+	@if ! (curl --fail -sS -o $(@) $(URL) || wget -O $(@) $(URL)); then \
+		echo "Error, curl or wget required."; \
+		echo "Exiting."; \
+		false; \
+	fi
+include $(MAKEFILES)
+
+# Set default Target
+.DEFAULT_GOAL := help
+
+
 # -------------------------------------------------------------------------------------------------
 # Default configuration
 # -------------------------------------------------------------------------------------------------
-.PHONY: build rebuild lint test _test-version _test-run tag pull login push enter
+# Own vars
+TAG        = latest
 
-CURRENT_DIR = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+# Makefile.docker overwrites
+NAME       = yamllint
+VERSION    = latest
+IMAGE      = cytopia/yamllint
+FLAVOUR    = latest
+FILE       = Dockerfile.${FLAVOUR}
+DIR        = Dockerfiles
+
+# Building from master branch: Tag == 'latest'
+ifeq ($(strip $(TAG)),latest)
+	ifeq ($(strip $(VERSION)),latest)
+		DOCKER_TAG = $(FLAVOUR)
+	else
+		ifeq ($(strip $(FLAVOUR)),latest)
+			DOCKER_TAG = $(VERSION)
+		else
+			DOCKER_TAG = $(FLAVOUR)-$(VERSION)
+		endif
+	endif
+# Building from any other branch or tag: Tag == '<REF>'
+else
+	ifeq ($(strip $(FLAVOUR)),latest)
+		DOCKER_TAG = $(VERSION)-$(TAG)
+	else
+		DOCKER_TAG = $(FLAVOUR)-$(VERSION)-$(TAG)
+	endif
+endif
+ARCH       = linux/amd64
+
+# Makefile.lint overwrites
+FL_IGNORES  = .git/,.github/,tests/,Dockerfiles/data/
+SC_IGNORES  = .git/,.github/,tests/
+JL_IGNORES  = .git/,.github/
+
 
 # -------------------------------------------------------------------------------------------------
-# File-lint configuration
+#  Default Target
 # -------------------------------------------------------------------------------------------------
-FL_VERSION = 0.4
-FL_IGNORES = .git/,.github/,tests/
-
-# -------------------------------------------------------------------------------------------------
-# Docker configuration
-# -------------------------------------------------------------------------------------------------
-DIR = .
-FILE = Dockerfile
-IMAGE = cytopia/yamllint
-TAG = latest
-NO_CACHE =
-
-
-# -------------------------------------------------------------------------------------------------
-# Default Target
-# -------------------------------------------------------------------------------------------------
+.PHONY: help
 help:
-	@echo "lint                              Lint repository"
-	@echo "build   [TAG=]                    Build image"
-	@echo "rebuild [TAG=]                    Build image without cache"
-	@echo "test    [TAG=]                    Test build image"
-	@echo "tag     [TAG=]                    Tag build image"
-	@echo "pull                              Pull FROM image"
-	@echo "login   [USER=] [PASS=]           Login to Dockerhub"
-	@echo "push    [TAG=]                    Push image to Dockerhub"
-	@echo "enter   [TAG=]                    Run and enter build image"
+	@echo "lint                                     Lint project files and repository"
+	@echo
+	@echo "build [ARCH=...] [TAG=...]               Build Docker image"
+	@echo "rebuild [ARCH=...] [TAG=...]             Build Docker image without cache"
+	@echo "push [ARCH=...] [TAG=...]                Push Docker image to Docker hub"
+	@echo
+	@echo "manifest-create [ARCHES=...] [TAG=...]   Create multi-arch manifest"
+	@echo "manifest-push [TAG=...]                  Push multi-arch manifest"
+	@echo
+	@echo "test [ARCH=...]                          Test built Docker image"
+	@echo
 
 
 # -------------------------------------------------------------------------------------------------
-# Targets
+#  Docker Targets
 # -------------------------------------------------------------------------------------------------
-lint:
-	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(CURRENT_DIR):/data cytopia/file-lint:$(FL_VERSION) file-cr --text --ignore '$(FL_IGNORES)' --path .
-	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(CURRENT_DIR):/data cytopia/file-lint:$(FL_VERSION) file-crlf --text --ignore '$(FL_IGNORES)' --path .
-	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(CURRENT_DIR):/data cytopia/file-lint:$(FL_VERSION) file-trailing-single-newline --text --ignore '$(FL_IGNORES)' --path .
-	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(CURRENT_DIR):/data cytopia/file-lint:$(FL_VERSION) file-trailing-space --text --ignore '$(FL_IGNORES)' --path .
-	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(CURRENT_DIR):/data cytopia/file-lint:$(FL_VERSION) file-utf8 --text --ignore '$(FL_IGNORES)' --path .
-	@docker run --rm $$(tty -s && echo "-it" || echo) -v $(CURRENT_DIR):/data cytopia/file-lint:$(FL_VERSION) file-utf8-bom --text --ignore '$(FL_IGNORES)' --path .
+.PHONY: build
+build: ARGS=--build-arg VERSION=$(VERSION)
+build: docker-arch-build
 
+.PHONY: rebuild
+rebuild: ARGS=--build-arg VERSION=$(VERSION)
+rebuild: docker-arch-rebuild
 
-build:
-	if echo '$(TAG)' | grep -Eq '^(latest|[.0-9]+?)\-'; then \
-		VERSION="$$( echo '$(TAG)' | grep -Eo '^(latest|[.0-9]+?)' )"; \
-		SUFFIX="$$( echo '$(TAG)' | grep -Eo '\-.+' )"; \
-		docker build \
-			$(NO_CACHE) \
-			--label "org.opencontainers.image.created"="$$(date --rfc-3339=s)" \
-			--label "org.opencontainers.image.revision"="$$(git rev-parse HEAD)" \
-			--label "org.opencontainers.image.version"="$(TAG)" \
-			--build-arg VERSION=$${VERSION} \
-			-t $(IMAGE) -f $(DIR)/$(FILE)$${SUFFIX} $(DIR); \
-	else \
-		docker build \
-			$(NO_CACHE) \
-			--label "org.opencontainers.image.created"="$$(date --rfc-3339=s)" \
-			--label "org.opencontainers.image.revision"="$$(git rev-parse HEAD)" \
-			--label "org.opencontainers.image.version"="$(TAG)" \
-			--build-arg VERSION=$(TAG) \
-			-t $(IMAGE) -f $(DIR)/$(FILE) $(DIR); \
-	fi
-
-
-rebuild: NO_CACHE=--no-cache
-rebuild: pull
-rebuild: build
-
-
-test:
-	@$(MAKE) --no-print-directory _test-version
-	@$(MAKE) --no-print-directory _test-run
+.PHONY: push
+push: docker-arch-push
 
 
 # -------------------------------------------------------------------------------------------------
-# Helper Targets
+#  Manifest Targets
 # -------------------------------------------------------------------------------------------------
+.PHONY: manifest-create
+manifest-create: docker-manifest-create
+
+.PHONY: manifest-push
+manifest-push: docker-manifest-push
+
+
+# -------------------------------------------------------------------------------------------------
+#  Test Targets
+# -------------------------------------------------------------------------------------------------
+.PHONY: test
+test: _test-version
+test: _test-run
+
+.PHONY: _test-version
 _test-version:
 	@echo "------------------------------------------------------------"
 	@echo "- Testing correct version"
@@ -101,50 +123,28 @@ _test-version:
 				| sed 's/.*v//g' \
 		)"; \
 		echo "Testing for latest: $${LATEST}"; \
-		if ! docker run --rm $(IMAGE) --version | grep -E "v?$${LATEST}"; then \
-			docker run --rm $(IMAGE) --version; \
+		if ! docker run --platform $(ARCH) --rm $(IMAGE):$(DOCKER_TAG) --version | grep -E "v?$${LATEST}"; then \
+			docker run --platform $(ARCH) --rm $(IMAGE):$(DOCKER_TAG) --version; \
 			echo "Failed"; \
 			exit 1; \
 		fi; \
 	else \
 		echo "Testing for tag: $(TAG)"; \
-		if ! docker run --rm $(IMAGE) --version | grep -E "v?$(TAG)[.0-9]+$$"; then \
-			docker run --rm $(IMAGE) --version; \
+		if ! docker run --platform $(ARCH) --rm $(IMAGE):$(DOCKER_TAG) --version | grep -E "v?$(TAG)[.0-9]+$$"; then \
+			docker run --platform $(ARCH) --rm $(IMAGE):$(DOCKER_TAG) --version; \
 			echo "Failed"; \
 			exit 1; \
 		fi; \
 	fi; \
 	echo "Success"; \
 
-
+.PHONY: _test-run
 _test-run:
 	@echo "------------------------------------------------------------"
 	@echo "- Testing yaml files "
 	@echo "------------------------------------------------------------"
-	@if ! docker run --rm -v $(CURRENT_DIR)/tests:/data $(IMAGE) . ; then \
+	if ! docker run --rm --platform $(ARCH) -v $(CURRENT_DIR)/tests:/data $(IMAGE):$(DOCKER_TAG) . ; then \
 		echo "Failed"; \
 		exit 1; \
 	fi; \
 	echo "Success";
-
-
-pull:
-	@grep -E '^\s*FROM' Dockerfile \
-		| sed -e 's/^FROM//g' -e 's/[[:space:]]*as[[:space:]]*.*$$//g' \
-		| xargs -n1 docker pull;
-
-login:
-	yes | docker login --username $(USER) --password $(PASS)
-
-
-tag:
-	docker tag $(IMAGE) $(IMAGE):$(TAG)
-
-
-push:
-	@$(MAKE) tag TAG=$(TAG)
-	docker push $(IMAGE):$(TAG)
-
-
-enter:
-	docker run --rm --name $(subst /,-,$(IMAGE)) -it --entrypoint=/bin/sh $(ARG) $(IMAGE):$(TAG)
