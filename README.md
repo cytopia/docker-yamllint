@@ -42,7 +42,7 @@
 View **[Dockerfiles](https://github.com/cytopia/docker-yamllint/blob/master/Dockerfiles/)** on GitHub.
 
 
-**Available Architectures:**  `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`
+**Available Architectures:**  `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x`
 
 Tiny Alpine-based dockerized version of [yamllint](https://github.com/adrienverge/yamllint)<sup>[1]</sup>.
 The image is built nightly against the latest stable version of `yamllint` and pushed to Dockerhub.
@@ -64,11 +64,11 @@ The following Docker image tags are rolling releases and are built and updated e
 
 | Docker Tag           | Git Ref   | Yamllint     | Flavour | Available Architectures                      |
 |----------------------|-----------|--------------|---------|----------------------------------------------|
-| `latest`             | master    | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
-| `alpine`             | master    | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+| `latest`             | master    | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+| `alpine`             | master    | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
 |                      |           |              |         |                                              |
-| `1`                  | master    | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
-| `alpine-1`           | master    | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+| `1`                  | master    | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+| `alpine-1`           | master    | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
 
 #### Point in time releases
 
@@ -77,13 +77,15 @@ The following Docker image tags are built once and can be used for reproducible 
 [![build](https://github.com/cytopia/docker-yamllint/workflows/build/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Abuild)
 
 
-| Docker Tag           | Git Ref   | Yamllint     | Flavour | Available Architectures                      |
-|----------------------|-----------|--------------|---------|----------------------------------------------|
-| `latest-0.10`        | tag: 0.10 | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
-| `alpine-latest-0.10` | tag: 0.10 | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
-|                      |           |              |         |                                              |
-| `1-0.10`             | tag: 0.10 | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
-| `alpine-1-0.10`      | tag: 0.10 | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6` |
+| Docker Tag           | Git Ref      | Yamllint     | Flavour | Available Architectures                      |
+|----------------------|--------------|--------------|---------|----------------------------------------------|
+| `latest-0.10`        | tag: `<tag>` | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+| `alpine-latest-0.10` | tag: `<tag>` | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+|                      |              |              |         |                                              |
+| `1-0.10`             | tag: `<tag>` | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+| `alpine-1-0.10`      | tag: `<tag>` | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+
+> Where `<tag>` refers to the chosen git tag from this repository.
 
 
 ## :open_file_folder: Docker mounts
