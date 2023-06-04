@@ -77,13 +77,13 @@ The following Docker image tags are built once and can be used for reproducible 
 [![build](https://github.com/cytopia/docker-yamllint/workflows/build/badge.svg)](https://github.com/cytopia/docker-yamllint/actions?query=workflow%3Abuild)
 
 
-| Docker Tag           | Git Ref      | Yamllint     | Flavour | Available Architectures                      |
-|----------------------|--------------|--------------|---------|----------------------------------------------|
-| `latest-0.10`        | tag: `<tag>` | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
-| `alpine-latest-0.10` | tag: `<tag>` | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
-|                      |              |              |         |                                              |
-| `1-0.10`             | tag: `<tag>` | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
-| `alpine-1-0.10`      | tag: `<tag>` | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+| Docker Tag            | Git Ref      | Yamllint     | Flavour | Available Architectures                      |
+|-----------------------|--------------|--------------|---------|----------------------------------------------|
+| `latest-<tag>`        | tag: `<tag>` | latest       | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+| `alpine-latest-<tag>` | tag: `<tag>` | latest       | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+|                       |              |              |         |                                              |
+| `1-<tag>`             | tag: `<tag>` | **`1.x.x`**  | default | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
+| `alpine-1-<tag>`      | tag: `<tag>` | **`1.x.x`**  | Alpine  | `amd64`, `i386`, `arm64`, `arm/v7`, `arm/v6`, `ppc64le`, `s390x` |
 
 > Where `<tag>` refers to the chosen git tag from this repository.
 
